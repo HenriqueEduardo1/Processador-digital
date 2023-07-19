@@ -6,7 +6,7 @@ entity bancoRegistradores is
         W_data : in std_logic_vector(15 downto 0);
         W_addr, Rp_addr, Rq_addr : in std_logic_vector(3 downto 0);
         W_wr, Rp_rd, Rq_rd, clk : in std_logic;
-        Rp_data, Rq_data : out std_logic_vector(15 downto 0)
+        Rp_data, Rq_data, saida_r0 : out std_logic_vector(15 downto 0)
     );
 end bancoRegistradores;
 
@@ -45,10 +45,12 @@ begin
     decRDA : decodificador4X16 port map(e => Rp_rd, i => Rp_addr, d => fb3eA);
     decRDB : decodificador4X16 port map(e => Rq_rd, i => Rq_addr, d => fb3eB);
 
-    gen_regs : for i in 0 to 15 generate
-        reg : registrador16bits port map(clk => clk, load => fregD(i), i => W_data, Q => fR(i));
-        b3eA : buffer3Estados port map(c => fb3eA(i), i => fR(i), q => Rp_data);
-        b3eB : buffer3Estados port map(c => fb3eB(i), i => fR(i), q => Rq_data );
+    saida_r0 <= fr(0);
+
+    gen_regs : for n in 0 to 15 generate
+        reg : registrador16bits port map(clk => clk, load => fregD(n), i => W_data, Q => fR(n));
+        b3eA : buffer3Estados port map(c => fb3eA(n), i => fR(n), q => Rp_data);
+        b3eB : buffer3Estados port map(c => fb3eB(n), i => fR(n), q => Rq_data );
     end generate gen_regs;
 
 end architecture;
