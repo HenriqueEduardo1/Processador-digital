@@ -6,12 +6,15 @@ entity unidadeDeControle is
         RF_Rp_zero, clk : in std_logic;
         data : in std_logic_vector(15 downto 0);
         RF_W_data : out std_logic_vector(15 downto 0);
-        D_addr, PC_out : out std_logic_vector(7 downto 0);
+        D_addr : out std_logic_vector(7 downto 0);
         D_rd , D_wr : out std_logic;
-        RF_W_addr, RF_Rp_addr, RF_Rq_addr : out std_logic_vector(3 downto 0);
+        RF_W_addr, RF_Rp_addr, RF_Rq_addr, PC_out : out std_logic_vector(3 downto 0);
         RF_W_wr, RF_Rp_rd, RF_Rq_rd : out std_logic;
         RF_s1, RF_s0 : out std_logic;
-        DES, E_D, alu_s1, alu_s0, I_rd : out std_logic
+        DES, E_D, alu_s1, alu_s0, I_rd : out std_logic;
+        IR_out : out std_logic_vector(15 downto 0);
+        out_ra, out_rb, out_rc : out std_logic_vector(3 downto 0);
+        out_w : out std_logic_vector(15 downto 0)
     );
 end unidadeDeControle;
 
@@ -29,15 +32,17 @@ architecture rtl of unidadeDeControle is
             RF_s1, RF_s0 : out std_logic;
             DES, E_D, alu_s1, alu_s0 : out std_logic;
             PC_ld, PC_clr, PC_inc : out std_logic;
-            I_rd, IR_ld : out std_logic
+            I_rd, IR_ld : out std_logic;
+            out_ra, out_rb, out_rc : out std_logic_vector(3 downto 0);
+            out_w : out std_logic_vector(15 downto 0)
         );
     end component;
 
     component contadorDePrograma is
         port(
             PC_ld, PC_clr, PC_inc, clk : in std_logic;
-            PC_offset : in std_logic_vector(7 downto 0);
-            count : out std_logic_vector(7 downto 0)
+            PC_offset : in std_logic_vector(3 downto 0);
+            count : out std_logic_vector(3 downto 0)
         );
     end component;
 
@@ -52,18 +57,13 @@ architecture rtl of unidadeDeControle is
 
     signal PC_ld_s, PC_clr_s, PC_inc_s, IR_ld_s : std_logic;
     signal IR_s : std_logic_vector(15 downto 0);
-    signal offset : std_logic_vector(7 downto 0);
+    signal offset : std_logic_vector(3 downto 0);
 
 begin
 
-    offset(7) <= IR_s(7);
-    offset(6) <= IR_s(6);
-    offset(5) <= IR_s(5);
-    offset(4) <= IR_s(4);
-    offset(3) <= IR_s(3);
-    offset(2) <= IR_s(2);
-    offset(1) <= IR_s(1);
-    offset(0) <= IR_s(0);
+    offset <= IR_s(3 downto 0);
+
+    IR_out <= IR_s;
 
     BC : blocoDeControle port map(
         RF_Rp_zero => RF_Rp_zero, clk => clk, IR => IR_s,
@@ -75,7 +75,9 @@ begin
         RF_s1 => RF_s1, RF_s0 => RF_s0,
         DES => DES, E_D => E_D, alu_s1 => alu_s1, alu_s0 => alu_s0,
         PC_ld => PC_ld_s, PC_clr => PC_clr_s, PC_inc => PC_inc_s,
-        I_rd => I_rd, IR_ld => IR_ld_s
+        I_rd => I_rd, IR_ld => IR_ld_s,
+        out_ra => out_ra, out_rb => out_rb, out_rc => out_rc,
+        out_w => out_w
     );
 
     contP : contadorDePrograma port map(

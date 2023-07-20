@@ -2,12 +2,12 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity reg16bits is
-port (
-    clk: in std_logic;
-    load: in std_logic;
-    d: in std_logic_vector(15 downto 0);
-    s: out std_logic_vector(15 downto 0)
-);
+    port (
+        clk: in std_logic;
+        load: in std_logic;
+        d: in std_logic_vector(15 downto 0);
+        s: out std_logic_vector(15 downto 0)
+    );
 end entity reg16bits;
 
 architecture rtl of reg16bits is

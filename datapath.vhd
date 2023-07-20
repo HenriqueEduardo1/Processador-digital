@@ -9,7 +9,7 @@ entity datapath is
         alu_s1, alu_s0, DES, E_D, RF_s0, RF_s1 : in std_logic;
         RF_W_data : in std_logic_vector(15 downto 0);
         RF_Rp_zero : out std_logic;
-        W_data, saida: out std_logic_vector(15 downto 0)
+        W_data : out std_logic_vector(15 downto 0)
     );
 end datapath;
 
@@ -28,7 +28,7 @@ architecture rtl of datapath is
             W_data : in std_logic_vector(15 downto 0);
             W_addr, Rp_addr, Rq_addr : in std_logic_vector(3 downto 0);
             W_wr, Rp_rd, Rq_rd, clk : in std_logic;
-            Rp_data, Rq_data, saida_r0 : out std_logic_vector(15 downto 0)
+            Rp_data, Rq_data: out std_logic_vector(15 downto 0)
         );
     end component;
 
@@ -47,11 +47,10 @@ architecture rtl of datapath is
         );
     end component;
     
-    signal resAlu, Smux, SRp_d, SRq_d, saida_s : std_logic_vector(15 downto 0);
+    signal resAlu, Smux, SRp_d, SRq_d : std_logic_vector(15 downto 0);
 begin
 
     W_data <= SRp_d;
-    saida <= saida_s;
 
     mux3x1 : mux3x1_16bits port map(
         data0 => resAlu, 
@@ -71,8 +70,7 @@ begin
         Rq_rd => RF_Rq_rd,
         clk => clk,
         Rp_data => SRp_d,
-        Rq_data => SRq_d,
-        saida_r0 => saida_s
+        Rq_data => SRq_d
     );
     cpz : compZero port map(
         data_in => SRp_d, 

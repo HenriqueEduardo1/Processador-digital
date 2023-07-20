@@ -28,8 +28,6 @@ begin
             
             if rd = '1' then
                 R_data <= memory(to_integer(unsigned(addr)));
-            else
-                R_data <= (others => 'Z');
             end if;
         end if;
     end process;

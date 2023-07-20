@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\henri\OneDrive\Área de Trabalho\CD\Processador-digital\simulation\qsim
+vprocessador
+Z1 IN6e9^IZM20:W[o4<hFKz:2
+Z2 VzP5Oa2PKlJW=_cRazfo493
+Z3 dC:\Users\henri\OneDrive\Área de Trabalho\CD\Processador-digital\simulation\qsim
+Z4 w1689881743
+Z5 8processador.vo
+Z6 Fprocessador.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 o-work work -O0
+!i10b 1
+Z9 !s100 ?<F>ac<eJT=WjI<H=c2AO2
+!s85 0
+Z10 !s108 1689881758.441000
+Z11 !s107 processador.vo|
+Z12 !s90 -work|work|processador.vo|
+!s101 -O0
+vprocessador_vlg_check_tst
+!i10b 1
+!s100 6WjLb0Xn9Bh]2j[3X<HTU1
+IkO=8m8mZliVK7Zf4YZeBk3
+V`5=I`:^d7;h=e=<aKk;cT0
+R3
+Z13 w1689881719
+Z14 8processador.vt
+Z15 Fprocessador.vt
+L0 57
+R7
+r1
+!s85 0
+31
+Z16 !s108 1689881762.596000
+Z17 !s107 processador.vt|
+Z18 !s90 -work|work|processador.vt|
+!s101 -O0
+R8
+vprocessador_vlg_sample_tst
+!i10b 1
+!s100 @B]WMa43[Nd[h90Z8_:n41
+Ic[I8bH=c5H6jP3MV0IIzL0
+Vghe6m4FCkmHTWA4ENlT?g0
+R3
+R13
+R14
+R15
+L0 29
+R7
+r1
+!s85 0
+31
+R16
+R17
+R18
+!s101 -O0
+R8
+vprocessador_vlg_vec_tst
+!i10b 1
+!s100 _OoSNjk_WK>4zPUYRB:nO0
+II4ec^Nz1lPkihlzE9Mj7S3
+VTHSaPDKg4Wj>2_O^anzBd2
+R3
+R13
+R14
+R15
+L0 2345
+R7
+r1
+!s85 0
+31
+R16
+R17
+R18
+!s101 -O0
+R8
