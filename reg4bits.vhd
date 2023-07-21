@@ -13,12 +13,10 @@ end entity reg4bits;
 architecture rtl of reg4bits is
     signal new_s: std_logic_vector(3 downto 0);
 begin
-    process(clk)
+    process(load)
     begin
-        if rising_edge(clk) then
-            if load = '1' then
-                new_s <= d;
-            end if;
+        if rising_edge(load) then
+            new_s <= d;
         end if;
     end process;
     

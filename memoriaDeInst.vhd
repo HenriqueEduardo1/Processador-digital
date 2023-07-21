@@ -12,7 +12,7 @@ end memoriaDeInst;
 	
 architecture hardware of memoriaDeInst  is
 	type      arranjo_memoria is array (0 to 2**4 - 1) of std_logic_vector(15 downto 0);
-	constant  dados: arranjo_memoria := ("0011000100000001","0011001000000011","0110000100100000","0001000000000001","0000000000000001", others => (others => '0'));
+	constant  dados: arranjo_memoria := ("0011000100000001","0011001000000011","0111000100100000","0001000000000001", others => (others => '0'));
 	
     signal new_s : std_logic_vector(15 downto 0);
 begin

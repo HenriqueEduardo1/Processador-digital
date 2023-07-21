@@ -13,9 +13,7 @@ entity blocoDeControle is
         RF_s1, RF_s0 : out std_logic;
         DES, E_D, alu_s1, alu_s0 : out std_logic;
         PC_ld, PC_clr, PC_inc : out std_logic;
-        I_rd, IR_ld : out std_logic;
-        out_ra, out_rb, out_rc : out std_logic_vector(3 downto 0);
-        out_w : out std_logic_vector(15 downto 0)
+        I_rd, IR_ld : out std_logic
     );
 end blocoDeControle;
 
@@ -98,11 +96,6 @@ begin
     RF_W_s(7 downto 0) <= IR(7 downto 0);
     RF_W_s(15 downto 8) <= (others => '0');
 
-    out_ra <= ra;
-    out_rb <= rb;
-    out_rc <= rc;
-    out_w <= RF_W_s;
-
     LC : logicaCombinacional port map(
         op => opc, s => s_s,
         RF_Rp_zero => RF_Rp_zero,
@@ -120,8 +113,8 @@ begin
     regE : regEstados4bits port map(clk => clk, n => n_s, s => s_s);
 
     mx4b0 : mux2x1De4bits port map(s => f_RF_W_addr, A => rc, B => ra, d => mx0_s);
-    mx4b1 : mux2x1De4bits port map(s => f_RF_Rp_addr, A => rb, B => ra, d => mx1_s);
-    mx4b2 : mux2x1De4bits port map(s => f_RF_Rq_addr, A => rc, B => rb, d => mx2_s);
+    mx4b1 : mux2x1De4bits port map(s => f_RF_Rp_addr, A => ra, B => rb, d => mx1_s);
+    mx4b2 : mux2x1De4bits port map(s => f_RF_Rq_addr, A => rb, B => rc, d => mx2_s);
 
     reg0 : reg4bits port map(clk => clk, load => RF_W_addr_ld_s, d => mx0_s, s => RF_W_addr);
     reg1 : reg4bits port map(clk => clk, load => RF_Rp_addr_ld_s, d => mx1_s, s => RF_Rp_addr);

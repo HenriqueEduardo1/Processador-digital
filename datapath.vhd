@@ -9,7 +9,7 @@ entity datapath is
         alu_s1, alu_s0, DES, E_D, RF_s0, RF_s1 : in std_logic;
         RF_W_data : in std_logic_vector(15 downto 0);
         RF_Rp_zero : out std_logic;
-        W_data : out std_logic_vector(15 downto 0)
+        W_data, saida : out std_logic_vector(15 downto 0)
     );
 end datapath;
 
@@ -51,6 +51,7 @@ architecture rtl of datapath is
 begin
 
     W_data <= SRp_d;
+    saida <= resAlu;
 
     mux3x1 : mux3x1_16bits port map(
         data0 => resAlu, 

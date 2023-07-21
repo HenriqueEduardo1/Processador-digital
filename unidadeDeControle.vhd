@@ -12,9 +12,7 @@ entity unidadeDeControle is
         RF_W_wr, RF_Rp_rd, RF_Rq_rd : out std_logic;
         RF_s1, RF_s0 : out std_logic;
         DES, E_D, alu_s1, alu_s0, I_rd : out std_logic;
-        IR_out : out std_logic_vector(15 downto 0);
-        out_ra, out_rb, out_rc : out std_logic_vector(3 downto 0);
-        out_w : out std_logic_vector(15 downto 0)
+        IR_out : out std_logic_vector(15 downto 0)
     );
 end unidadeDeControle;
 
@@ -32,9 +30,7 @@ architecture rtl of unidadeDeControle is
             RF_s1, RF_s0 : out std_logic;
             DES, E_D, alu_s1, alu_s0 : out std_logic;
             PC_ld, PC_clr, PC_inc : out std_logic;
-            I_rd, IR_ld : out std_logic;
-            out_ra, out_rb, out_rc : out std_logic_vector(3 downto 0);
-            out_w : out std_logic_vector(15 downto 0)
+            I_rd, IR_ld : out std_logic
         );
     end component;
 
@@ -75,9 +71,7 @@ begin
         RF_s1 => RF_s1, RF_s0 => RF_s0,
         DES => DES, E_D => E_D, alu_s1 => alu_s1, alu_s0 => alu_s0,
         PC_ld => PC_ld_s, PC_clr => PC_clr_s, PC_inc => PC_inc_s,
-        I_rd => I_rd, IR_ld => IR_ld_s,
-        out_ra => out_ra, out_rb => out_rb, out_rc => out_rc,
-        out_w => out_w
+        I_rd => I_rd, IR_ld => IR_ld_s
     );
 
     contP : contadorDePrograma port map(

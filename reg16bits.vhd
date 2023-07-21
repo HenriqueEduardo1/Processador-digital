@@ -13,12 +13,10 @@ end entity reg16bits;
 architecture rtl of reg16bits is
     signal new_s: std_logic_vector(15 downto 0);
 begin
-    process(clk)
+    process(load)
     begin
-        if rising_edge(clk) then
-            if load = '1' then
-                new_s <= d;
-            end if;
+        if rising_edge(load) then
+            new_s <= d;
         end if;
     end process;
     

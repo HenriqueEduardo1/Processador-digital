@@ -11,9 +11,7 @@ entity processador is
         RF_W_addr, RF_Rp_addr, RF_Rq_addr, PC_out : out std_logic_vector(3 downto 0);
         RF_W_wr, RF_Rp_rd, RF_Rq_rd : out std_logic;
         RF_s1, RF_s0 : out std_logic;
-        DES, E_D, alu_s1, alu_s0, I_rd : out std_logic;
-        out_ra, out_rb, out_rc : out std_logic_vector(3 downto 0);
-        out_w : out std_logic_vector(15 downto 0)
+        DES, E_D, alu_s1, alu_s0, I_rd : out std_logic
     );
 end processador;
 
@@ -30,9 +28,7 @@ architecture rtl of processador is
             RF_W_wr, RF_Rp_rd, RF_Rq_rd : out std_logic;
             RF_s1, RF_s0 : out std_logic;
             DES, E_D, alu_s1, alu_s0, I_rd : out std_logic;
-            IR_out : out std_logic_vector(15 downto 0);
-            out_ra, out_rb, out_rc : out std_logic_vector(3 downto 0);
-            out_w : out std_logic_vector(15 downto 0)
+            IR_out : out std_logic_vector(15 downto 0)
         );
     end component;
 
@@ -44,7 +40,7 @@ architecture rtl of processador is
             alu_s1, alu_s0, DES, E_D, RF_s0, RF_s1 : in std_logic;
             RF_W_data : in std_logic_vector(15 downto 0);
             RF_Rp_zero : out std_logic;
-            W_data : out std_logic_vector(15 downto 0)
+            W_data, saida : out std_logic_vector(15 downto 0)
         );
     end component;
 
@@ -83,7 +79,6 @@ architecture rtl of processador is
 begin
 
     IR_out <= IR_saida;
-    saida <= R_data_s;
 
     RF_W_data <= RF_W_data_s;
     PC_out <= PC_out_s;
@@ -117,9 +112,7 @@ begin
         RF_W_wr => RF_W_wr_s, RF_Rp_rd => RF_Rp_rd_s, RF_Rq_rd => RF_Rq_rd_s,
         RF_s1 => RF_s1_s, RF_s0 => RF_s0_s,
         DES => DES_s, E_D => E_D_s, alu_s1 => alu_s1_s, alu_s0 => alu_s0_s, I_rd => I_rd_s,
-        IR_out => IR_saida,
-        out_ra => out_ra, out_rb => out_rb, out_rc => out_rc,
-        out_w => out_w
+        IR_out => IR_saida
     );
 
     ram : ram256x16 port map(
@@ -136,7 +129,8 @@ begin
         E_D => E_D_s, RF_s0 => RF_s0_s, RF_s1 => RF_s1_s,
         RF_W_data => RF_W_data_s,
         RF_Rp_zero => RF_Rp_zero_s, 
-        W_data => W_data_s
+        W_data => W_data_s,
+        saida => saida
     );
 
 end architecture;
